@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html ng-app=contactsManager>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacts</title>
+  <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/app.css" rel="stylesheet" />
+
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header" ng-controller=brandCtrl>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ brand.url }}">{{ brand.title }}</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse" ng-controller=navCtrl>
+        <ul class="nav navbar-nav" ng-repeat="url in urls">
+          <li><a href="{{ url.link }}" title="{{ url.title }}">{{ url.text }}</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container" id="contactsContainer" ng-controller=contactsCtrl>
+
+    <div class="row">
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Type to search" ng-model="query">
+        </div><!-- /.form-group -->
+      </div><!-- /.form-group -->
+
+      <div class="col-md-2 col-md-offset-7">
+        <div class="form-group">
+          <button type="button" class="btn btn-sml btn-success addContactButton" placeholder="Click to add a contact" data-toggle="modal" data-target="#addContact">Add Contact</button>
+        </div><!-- /.form-group -->
+      </div><!-- /.form-group -->
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-12">
+
+        <h2>View Contacts</h2>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Number</th>
+              <th>Email</th>
+              <th>Website</th>
+              <th id="optionsHeading">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- If there are contacts in the list -->
+            <tr ng-repeat="contact in contacts | filter:query" ng-show="contacts.length">
+              <td>{{ contact.company }}</td>
+              <td>{{ contact.number }}</td>
+              <td>{{ contact.email }}</td>
+              <td>{{ contact.website }}</td>
+              <td  class="optionsRow">
+                <button class="btn btn-sm btn-danger removeContactButton" ng-click="promptRemove(contact)">X</button>
+              </td>
+            </tr>
+            <!-- If the list is empty -->
+            <tr ng-hide="contacts.length">
+              <td class="text-center" colspan="6">No Contacts Available</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div><!-- /.col-sm-12 -->
+
+    </div><!-- /.row -->
+
+    <!-- ADD CONTACT -->
+    <form class="form-horizontal" role="form" ng-submit="addContact()">
+      <div class="modal fade" id="addContact" tabindex="-1" role="dialog" aria-labelledby="addContactLabel">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="addContactLabel">Add Contact</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Company</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control addInput" name="company"
+                      ng-model="company" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Number</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control addInput" name="Number"
+                      ng-model="number" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Email</label>
+                  <div class="col-md-4">
+                    <input type="email" class="form-control addInput" name="email"
+                      ng-model="email" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Website</label>
+                  <div class="col-md-4">
+                    <input type="url" class="form-control addInput" name="website"
+                      ng-model="website" />
+                  </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-sm btn-success">Add</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+    </form>
+
+    <!-- REMOVE CONTACT -->
+    <form class="form-horizontal" role="form" ng-submit="removeContact()">
+      <div class="modal fade" id="promptRemove" tabindex="-1" role="dialog" aria-labelledby="promptRemoveLabel">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="promptRemoveLabel">Remove Contact</h4>
+            </div>
+            <div class="modal-body">
+
+              <p>Are you sure you want to remove this contact?</p>
+              <p><strong>Company:</strong> <span id="removeCompany"></span></p>
+              <p><strong>Number:</strong> <span id="removeNumber"></span></p>
+              <p><strong>Email:</strong> <span id="removeEmail"></span></p>
+              <p><strong>Website:</strong> <span id="removeWebsite"></span></p>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">No</button>
+              <button type="submit" class="btn btn-sm btn-danger">Yes</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+    </form>
+
+  </div><!-- /.container -->
+
+  <script src="assets/plugins/jquery/jquery-1.12.3.min.js"></script>
+  <script src="assets/plugins/angular/angular.js"></script>
+  <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
