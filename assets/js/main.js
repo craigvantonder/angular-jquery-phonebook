@@ -1,49 +1,26 @@
 var app = angular.module('contactsManager',[]);
 
-app.controller('brandCtrl',function($scope) {
+app.controller('pageCtrl',[
+  '$scope', '$timeout',
+  // Simulate delay for back end request
+  function ( $scope , $timeout ) {
 
+  // App logo / name
   $scope.brand = {
     url: document.location.origin+'/',
     title: 'Contacts Manager'
   };
 
-});
-
-app.controller('navCtrl',function($scope) {
-
+  // Each nav link available
   $scope.urls = [
     {
       link: document.location.origin+'/',
       title: 'Click to go to the home page',
-      text: 'List'
-    }
-  ];
-
-});
-
-app.controller("contactsCtrl",function($scope) {
-
-  $scope.contacts = [
-    {
-      company: 'Google',
-      number: '123 321 1233',
-      email: 'support@googe.com',
-      website: 'http://google.com'
-    },{
-      company: 'Google',
-      number: '465 654 4566',
-      email: 'support@facebook.com',
-      website: 'http://facebook.com'
-    },{
-      company: 'Twitter',
-      number: '789 987 7899',
-      email: 'support@twitter.com',
-      website: 'http://twitter.com'
+      text: 'Homepage'
     }
   ];
 
   $scope.addContact = function(contact) {
-
     // Add contact
     $scope.contacts.push({
      'company':$scope.company,
@@ -60,11 +37,9 @@ app.controller("contactsCtrl",function($scope) {
 
     // Close the modal
     $('#addContact').modal('toggle');
-
   };
 
   $scope.promptRemove = function(contact) {
-
     // Add this contacts values
     $('#removeCompany').text(contact.company);
     $('#removeNumber').text(contact.number);
@@ -73,7 +48,6 @@ app.controller("contactsCtrl",function($scope) {
 
     // Open the modal
     $('#promptRemove').modal('toggle');
-
   };
 
   $scope.removeContact = function(contact) {
@@ -83,15 +57,38 @@ app.controller("contactsCtrl",function($scope) {
 
     // Close the modal
     $('#promptRemove').modal('toggle');
-
   };
 
-});
+  // Used for prompting user when contacts list is loading
+  $scope.contactsLoading = true;
 
-app.controller("helloCtrl",function($scope) {
+  // Faking request for data
+  $timeout(function afterRetrievingVideos (){
+    // Fake request
+    var _contacts = [
+      {
+        company: 'Google',
+        number: '123 321 1233',
+        email: 'support@googe.com',
+        website: 'http://google.com'
+      }, {
+        company: 'Google',
+        number: '465 654 4566',
+        email: 'support@facebook.com',
+        website: 'http://facebook.com'
+      }, {
+        company: 'Twitter',
+        number: '789 987 7899',
+        email: 'support@twitter.com',
+        website: 'http://twitter.com'
+      }
+    ];
 
-  $scope.app = {
-    message: 'Hello Angular'
-  };
+    // Transfer the fake data to the scope
+    $scope.contacts = _contacts;
 
-});
+    // Stop prompting that the list is loading
+    $scope.contactsLoading = false;
+  }, 1000);
+
+}]);

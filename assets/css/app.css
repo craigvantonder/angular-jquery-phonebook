@@ -6,10 +6,6 @@ body {
 #contactsContainer {
   padding-top: 40px;
 }
-/* Float the add button to the right to line up with the end of the table */
-.addContactButton {
-  float: right;
-}
 /* An attempt to make the options column a bit neater */
 #optionsHeading,
 .optionsRow {

@@ -1,34 +1,13 @@
-## Synopsis
+Angular JQuery Phonebook
+========================
 
-A simple contacts manager built with Angular, jQuery and Bootstrap.
+A simple phonebook / contacts manager built with Angular, jQuery and Bootstrap.
 
-## Motivation
-
-I have been reading about Angular and decided to try out some of this information in a practical way so I have opted for a simple crud interface to manage contact information.
+View the [demo](https://craigvantonder.github.io/angular-jquery-phonebook/ "See the demo on github pages") on Github pages.
 
 I'd like to update this to:
 
 - Not use jQuery within the Angular controller.
 - Include the use of indexed db for data storage.
 
-## Screenshots
-
-Viewing and searching contacts:
-
-![List Contact](/screenshots/list.png "List Contact")
-
-Adding a contact:
-
-![Add Contact](/screenshots/add.png "Add Contact")
-
-Removing a contact:
-
-![Remove Contact](/screenshots/remove.png "Remove Contact")
-
-Viewing added and removed contacts:
-
-![View Added And Removed Contacts](/screenshots/added_removed.png "View Added And Removed Contacts")
-
-## Installation
-
-git clone https://github.com/craigvantonder/angular-jquery-contacts-manager.git
+View the Angular and jQuery used [here](https://craigvantonder.github.io/angular-jquery-phonebook/assets/js/main.js "See the Angular and jQuery used for this").
