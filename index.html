@@ -10,7 +10,8 @@
   <link href="assets/css/app.css" rel="stylesheet" />
 
 </head>
-<body ng-app=contactsManager ng-controller=pageCtrl>
+<!-- Use ng-cloak to ensure that Angular isn’t in its raw (uncompiled) form until the page loads so as to avoid string interpolation flashes -->
+<body ng-app=contactsManager ng-controller=pageCtrl ng-cloak>
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">

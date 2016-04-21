@@ -15,3 +15,7 @@ body {
 .removeContactButton {
   margin-left: 12px;
 }
+/* Remove string interpolation flashes */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+display: none !important;
+}
