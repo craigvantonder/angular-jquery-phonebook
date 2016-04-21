@@ -72,7 +72,7 @@ app.controller('pageCtrl',[
         email: 'support@googe.com',
         website: 'http://google.com'
       }, {
-        company: 'Google',
+        company: 'Facebook',
         number: '465 654 4566',
         email: 'support@facebook.com',
         website: 'http://facebook.com'
