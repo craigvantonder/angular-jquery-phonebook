@@ -9,5 +9,6 @@ I'd like to update this to:
 
 - Not use jQuery within the Angular controller.
 - Include the use of indexed db for data storage.
+- Include validation on the add contact form.
 
 View the Angular and jQuery used [here](https://craigvantonder.github.io/angular-jquery-phonebook/assets/js/main.js "See the Angular and jQuery used for this").
