@@ -2,20 +2,11 @@
 body {
   padding-top: 50px;
 }
-/* Add space between the search filter and add button and the nav bar */
-#contactsContainer {
-  padding-top: 40px;
-}
-/* An attempt to make the options column a bit neater */
-#optionsHeading,
-.optionsRow {
-  max-width: 25px;
-}
-/* An attempt to center the remove button in the row */
-.removeContactButton {
-  margin-left: 12px;
-}
 /* Remove string interpolation flashes */
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
 display: none !important;
+}
+/* Add space between the search filter and add button and the nav bar */
+#contactsContainer {
+  padding-top: 40px;
 }

@@ -56,37 +56,41 @@
 
         <h2>View Contacts</h2>
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Number</th>
-              <th>Email</th>
-              <th>Website</th>
-              <th id="optionsHeading">Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- If there are contacts in the list -->
-            <tr ng-repeat="contact in contacts | filter:query" ng-show="contacts.length" ng-if="!contactsLoading">
-              <td>{{ contact.company }}</td>
-              <td>{{ contact.number }}</td>
-              <td>{{ contact.email }}</td>
-              <td>{{ contact.website }}</td>
-              <td  class="optionsRow">
-                <button class="btn btn-sm btn-danger removeContactButton" ng-click="promptRemove(contact)">X</button>
-              </td>
-            </tr>
-            <!-- If the list is empty -->
-            <tr ng-hide="contacts.length" ng-if="!contactsLoading">
-              <td class="text-center" colspan="6">No Contacts Available</td>
-            </tr>
-            <!-- If the list is loading -->
-            <tr ng-if="contactsLoading">
-              <td class="text-center" colspan="6">Contacts Loading...</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="panel panel-default">
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Number</th>
+                <th>Email</th>
+                <th>Website</th>
+                <th class="text-center">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- If there are contacts in the list -->
+              <tr ng-repeat="contact in contacts | filter:query" ng-show="contacts.length" ng-if="!contactsLoading">
+                <td>{{ contact.company }}</td>
+                <td>{{ contact.number }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.website }}</td>
+                <td class="text-center">
+                  <button class="btn btn-sm btn-danger removeContactButton" ng-click="promptRemove(contact)">X</button>
+                </td>
+              </tr>
+              <!-- If the list is empty -->
+              <tr ng-hide="contacts.length" ng-if="!contactsLoading">
+                <td class="text-center" colspan="6">No Contacts Available</td>
+              </tr>
+              <!-- If the list is loading -->
+              <tr ng-if="contactsLoading">
+                <td class="text-center" colspan="6">Contacts Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
 
       </div><!-- /.col-sm-12 -->
 
